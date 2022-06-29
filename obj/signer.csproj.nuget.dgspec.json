@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Yossuf Niddal\\Desktop\\AhmedAshraf\\signer\\signer.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Yossuf Niddal\\Desktop\\AhmedAshraf\\signer\\signer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Yossuf Niddal\\Desktop\\AhmedAshraf\\signer\\signer.csproj",
+        "projectName": "signer",
+        "projectPath": "C:\\Users\\Yossuf Niddal\\Desktop\\AhmedAshraf\\signer\\signer.csproj",
+        "packagesPath": "C:\\Users\\Yossuf Niddal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Yossuf Niddal\\Desktop\\AhmedAshraf\\signer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Yossuf Niddal\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BouncyCastle": {
+              "target": "Package",
+              "version": "[1.8.9, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2-beta1, )"
+            },
+            "Pkcs11Interop": {
+              "target": "Package",
+              "version": "[5.1.2, )"
+            },
+            "Pkcs11Interop.X509Store": {
+              "target": "Package",
+              "version": "[0.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[3.2.0-preview3.20175.8, )"
+            },
+            "System.Security.Cryptography.Pkcs": {
+              "target": "Package",
+              "version": "[7.0.0-preview.5.22301.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

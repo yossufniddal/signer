@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "mvCdGR42g4dDEtHVfGxpawIqJF6KUz/lv2AXCnxQoEE=",
+  "Source": "signer",
+  "BasePath": "_content/signer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
