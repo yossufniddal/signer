@@ -14,56 +14,9 @@ namespace Utils
     public class TokenSigner
     {
         private readonly string DllLibPath = "eps2003csp11.dll";
-        private string TokenPin = "60110047";
+        private string tokenPin = Environment.GetEnvironmentVariable("TOKEN__PIN")!;
         private string TokenCertificate = "Egypt Trust Sealing CA";
-        public static string Sign(string document)
-        {
-            TokenSigner tokenSigner = new TokenSigner();
-            {
-                tokenSigner.ListCertificates();
-                String cades = "";
-                String SourceDocumentJson = document;
-                JObject request = JsonConvert.DeserializeObject<JObject>(SourceDocumentJson, new JsonSerializerSettings()
-                {
-                    FloatFormatHandling = FloatFormatHandling.String,
-                    FloatParseHandling = FloatParseHandling.Decimal,
-                    DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                    DateParseHandling = DateParseHandling.None
-                });
 
-                //Start serialize
-                String canonicalString = tokenSigner.Serialize(request!);
-                File.WriteAllBytes(@"d:\CanonicalString.txt", System.Text.Encoding.UTF8.GetBytes(canonicalString));
-                // retrieve cades
-                if (request["documentTypeVersion"].Value<string>() == "0.9")
-                {
-                    cades = "ANY";
-                }
-                else
-                {
-                    cades = tokenSigner.SignWithCMS(canonicalString);
-                }
-                File.WriteAllBytes(@"D:\Cades.txt", System.Text.Encoding.UTF8.GetBytes(cades));
-                JObject signaturesObject = new JObject(
-                                       new JProperty("signatureType", "I"),
-                                       new JProperty("value", cades));
-                JArray signaturesArray = new JArray();
-                signaturesArray.Add(signaturesObject);
-                request.Add("signatures", signaturesArray);
-                String fullSignedDocument = "{\"documents\":[" + request.ToString() + "]}";
-                File.WriteAllBytes(@"D:\FullSignedDocument.json", System.Text.Encoding.UTF8.GetBytes(fullSignedDocument));
-                return request.ToString();
-            }
-        }
-
-        private byte[] Hash(string input)
-        {
-            using (SHA256 sha = SHA256.Create())
-            {
-                var output = sha.ComputeHash(Encoding.UTF8.GetBytes(input));
-                return output;
-            }
-        }
         private byte[] HashBytes(byte[] input)
         {
             using (SHA256 sha = SHA256.Create())
@@ -78,7 +31,7 @@ namespace Utils
             Pkcs11InteropFactories factories = new Pkcs11InteropFactories();
             using (IPkcs11Library pkcs11Library = factories.Pkcs11LibraryFactory.LoadPkcs11Library(factories, DllLibPath, AppType.MultiThreaded))
             {
-                ISlot slot = pkcs11Library.GetSlotList(SlotsType.WithTokenPresent).FirstOrDefault();
+                ISlot slot = pkcs11Library.GetSlotList(SlotsType.WithTokenPresent).FirstOrDefault()!;
                 if (slot is null)
                 {
                     return "No slots found";
@@ -87,7 +40,7 @@ namespace Utils
                 ISlotInfo slotInfo = slot.GetSlotInfo();
                 using (var session = slot.OpenSession(SessionType.ReadWrite))
                 {
-                    session.Login(CKU.CKU_USER, Encoding.UTF8.GetBytes(TokenPin));
+                    session.Login(CKU.CKU_USER, Encoding.UTF8.GetBytes(tokenPin));
                     var certificateSearchAttributes = new List<IObjectAttribute>()
                     {
                         session.Factories.ObjectAttributeFactory.Create(CKA.CKA_CLASS, CKO.CKO_CERTIFICATE),
@@ -127,7 +80,7 @@ namespace Utils
         {
             return SerializeToken(request);
         }
-        private string SerializeToken(JToken request)
+        public string SerializeToken(JToken request)
         {
             string serialized = "";
             if (request.Parent is null)

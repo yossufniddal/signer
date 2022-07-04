@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Z4J0Q325J6If8pubUA4e6qJ1KPj4ATB3/P3kh9+UAxU=",
+  "Source": "signer",
+  "BasePath": "_content/signer",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -3,8 +3,6 @@ using Utils;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-using System.Net.Http;
-
 namespace signer.Controllers;
 
 [ApiController]
@@ -19,11 +17,9 @@ public class SignerController : ControllerBase
     [HttpPost(Name = "GetSigner")]
     public async Task<string> Sign()
     {
-
         Request.EnableBuffering();
         var bodyAsText = await new System.IO.StreamReader(Request.Body).ReadToEndAsync();
         Request.Body.Position = 0;
-
         JArray? request = JsonConvert.DeserializeObject<JArray>(bodyAsText, new JsonSerializerSettings()
         {
             FloatFormatHandling = FloatFormatHandling.String,
@@ -32,7 +28,6 @@ public class SignerController : ControllerBase
             DateParseHandling = DateParseHandling.None
         });
 
-        JObject? finalRequest;
         TokenSigner signer = new TokenSigner();
         JArray signedDocs = new JArray();
 
@@ -40,9 +35,8 @@ public class SignerController : ControllerBase
         {
             var token = request![i];
             JObject obj = token.ToObject<JObject>()!;
-          
             obj.Remove("Serial");
-            String canonicalString = signer.Serialize(obj);
+            String canonicalString = signer.SerializeToken(obj);
             string signature = signer.SignWithCMS(canonicalString);
             JArray signaturesArray = new JArray();
             JObject signaturesObject = new JObject(
@@ -56,9 +50,7 @@ public class SignerController : ControllerBase
 
         EtaApi api = new EtaApi();
         string? finalResp = await api.submit(documentsObject);
-        // Console.WriteLine(signedDocs);
-        // string signed = TokenSigner.Sign(bodyAsText);
-        return finalResp!;
+        return finalResp!.ToString()!;
     }
 }
 
