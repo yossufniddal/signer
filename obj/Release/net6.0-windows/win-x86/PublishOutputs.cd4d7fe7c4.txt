@@ -1,0 +1,5 @@
+C:\Users\Yossuf Niddal\Desktop\AhmedAshraf\signer\obj\Release\net6.0-windows\win-x86\PubTmp\Out\appsettings.Development.json
+C:\Users\Yossuf Niddal\Desktop\AhmedAshraf\signer\obj\Release\net6.0-windows\win-x86\PubTmp\Out\appsettings.json
+C:\Users\Yossuf Niddal\Desktop\AhmedAshraf\signer\obj\Release\net6.0-windows\win-x86\PubTmp\Out\signer.pdb
+C:\Users\Yossuf Niddal\Desktop\AhmedAshraf\signer\obj\Release\net6.0-windows\win-x86\PubTmp\Out\aspnetcorev2_inprocess.dll
+C:\Users\Yossuf Niddal\Desktop\AhmedAshraf\signer\obj\Release\net6.0-windows\win-x86\PubTmp\Out\signer.exe

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Utils;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-
+using System.Collections.Generic;
 namespace signer.Controllers;
 
 [ApiController]
@@ -36,12 +36,13 @@ public class SignerController : ControllerBase
             var token = request![i];
             JObject obj = token.ToObject<JObject>()!;
             obj.Remove("Serial");
+
             String canonicalString = signer.SerializeToken(obj);
             string signature = signer.SignWithCMS(canonicalString);
             JArray signaturesArray = new JArray();
             JObject signaturesObject = new JObject(
                                        new JProperty("signatureType", "I"),
-                                       new JProperty("value", signature));
+                                       new JProperty("value", signature + "ii"));
             signaturesArray.Add(signaturesObject);
             obj.Add("signatures", signaturesArray);
             signedDocs.Add(obj);
@@ -49,8 +50,11 @@ public class SignerController : ControllerBase
         JObject documentsObject = new JObject(new JProperty("documents", signedDocs));
 
         EtaApi api = new EtaApi();
+        Console.WriteLine(signedDocs);
         string? finalResp = await api.submit(documentsObject);
-        return finalResp!.ToString()!;
+        signedDocs = new JArray();
+        return finalResp.ToString();
+
     }
 }
 

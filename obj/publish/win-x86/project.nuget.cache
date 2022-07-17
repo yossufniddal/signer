@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lUId9DEDVyxP2m9CF7Ke4g1Iin8h2AKMk5nrNxniGfO7gcSz1rPZCUSbC9iyfG6LXrECU405iwkTb2J1shy7lA==",
+  "dgSpecHash": "MdLpVRYd8cRMDXTl4yGbj3lVzjj4zG2H2SUU5IbwKb071J7h8KComTcb2julDAGnBAooRRkKOOldpgZzN69G5g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Yossuf Niddal\\Desktop\\AhmedAshraf\\signer\\signer.csproj",
   "expectedPackageFiles": [
@@ -27,10 +27,10 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "BouncyCastle",
       "targetGraphs": [
-        "net6.0"
+        "net6.0-windows7.0"
       ]
     }
   ]
